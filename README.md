@@ -64,7 +64,7 @@
 - Run Unreal Engine Pixel Streaming package.
 
     ```powershell
-    .\projects\Berth100\Packaged\Windows\Berth100\Binaries\Win64\Berth100.exe -PixelStreamingIP=127.0.0.1 -PixelStreamingPort=8888 -PixelStreamingUrl=ws://localhost:8888 -AllowPixelStreamingCommands -RenderOffScreen -StdOut -FullStdOutLogOutput
+    .\projects\ThaiVanLung\Packaged\Windows\THAIVANLUNG\Binaries\Win64\THAIVANLUNG.exe -PixelStreamingIP=127.0.0.1 -PixelStreamingPort=8888 -PixelStreamingUrl=ws://localhost:8888 -AllowPixelStreamingCommands -RenderOffScreen -StdOut -FullStdOutLogOutput
     ```
 
 - Other way to run
