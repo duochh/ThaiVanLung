@@ -19,7 +19,7 @@
   - Copy project built package to container.
   - Run with GPU acceleration. Successfully!!!
 
-## How to run Dockerfile.mcr
+## How to build and run container from Dockerfile.mcr
 
 - Copy dockerfile and helper scripts to ue project folder.
 - Update project path in docker file:
@@ -61,24 +61,46 @@
     .\PixelStreamingInfrastructure\SignallingWebServer\platform_scripts\cmd\Start_SignallingServer.ps1
     ```
 
-- Run Unreal Engine Pixel Streaming package.
+- Run Unreal Engine Pixel Streaming windows package.
 
     ```powershell
-    .\projects\ThaiVanLung\Packaged\Windows\THAIVANLUNG\Binaries\Win64\THAIVANLUNG.exe -PixelStreamingIP=127.0.0.1 -PixelStreamingPort=8888 -PixelStreamingUrl=ws://localhost:8888 -AllowPixelStreamingCommands -RenderOffScreen -StdOut -FullStdOutLogOutput
+    .\projects\<MyProject>\Packaged\Windows\<MyProject>\Binaries\Win64\<MyProject>.exe -PixelStreamingIP=127.0.0.1 -PixelStreamingPort=8888 -PixelStreamingUrl=ws://localhost:8888 -AllowPixelStreamingCommands -RenderOffScreen -StdOut -FullStdOutLogOutput
     ```
 
-- Other way to run
+- Push image to docker Hub
 
     ```cmd
-    docker push duochh/server-pixel-streaming-berth100:ltsc2022
-    docker run -it --isolation process --device class/5B45201D-F2F2-4F3B-85BB-30FF1F953599 --name berth100 duochh/server-pixel-streaming-berth100:ltsc2022
+    docker login
+    docker push <image-name>
     ```
 
-- Verify running game in container:
+## How to run docker image from docker hub image
+
+- Login to your account and pull and run the image with DHCP
 
     ```cmd
+    docker login
+    docker pull <image-name>
+    docker run -it --isolation process --device class/5B45201D-F2F2-4F3B-85BB-30FF1F953599 --name <container-name> <image-name>
+    ```
+
+- Login to your account and pull and run container with static IP
+
+    ```cmd
+    docker network create --driver nat --subnet=172.20.0.0/16 <customnetwork>
+    docker run -it --isolation process --device class/5B45201D-F2F2-4F3B-85BB-30FF1F953599 --net <customnetwork> --ip <cont-ip-address> --name <container-name> <image-name>
+    ```
+
+## Verify running game in container
+
+- Find ID of running container and exec to it
+
+    ```cmd
+    docker ps -aqf "name=<container-name>"
     docker exec -it <container-id> powershell
     ```
+
+- Run commands in powershell to get process
 
     ```powershell
     # Check running process and copy Id of game process
@@ -88,7 +110,7 @@
     Get-NetTcpConnection -OwningProcess <MyProjectId>
     ```
 
-## How to view on Browser
+## How to play on Browser
 
 - Find docker container id:
 
@@ -102,4 +124,4 @@
     docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' <container-id>
     ```
 
-- Open browser and go to this link: <http://containerIpAddress/Showcase.html>
+- Open browser and go to this link: <http://cont-ip-address/Showcase.html>
