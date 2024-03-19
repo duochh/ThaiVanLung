@@ -124,4 +124,4 @@
     docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' <container-id>
     ```
 
-- Open browser and go to this link: <http://cont-ip-address/Showcase.html>
+- Open browser and go to this link: <http://contipaddress:80/Showcase.html>
