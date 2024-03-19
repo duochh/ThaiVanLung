@@ -110,6 +110,13 @@
     Get-NetTcpConnection -OwningProcess <MyProjectId>
     ```
 
+- Copy log files from docker container to host
+
+    ```cmd
+    docker stop <container-id>
+    docker cp <container-id>:C:\projects\<MyProject>\Packaged\Windows\<MyProject>\Saved\Logs C:\<HostSavePath>
+    ```
+
 ## How to play on Browser
 
 - Find docker container id:
