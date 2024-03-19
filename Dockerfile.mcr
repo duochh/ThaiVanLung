@@ -49,3 +49,4 @@ ENTRYPOINT ["cmd.exe", "/S", "/K", "C:\\entrypoint.cmd", "powershell.exe"]
 #docker inspect network devnetwork
 #docker run -it --isolation process --device class/5B45201D-F2F2-4F3B-85BB-30FF1F953599 --net devnetwork --ip 172.20.0.4 --name thaivanlung duochh/thaivanlung-pixel-streaming:ltsc2022
 #docker push duochh/thaivanlung-pixel-streaming:ltsc2022
+#docker cp de03f339a59e:C:\projects\ThaiVanLung\Packaged\Windows\THAIVANLUNG\Saved\Logs C:\Users\PC-071\Downloads
